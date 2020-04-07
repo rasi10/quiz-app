@@ -2,13 +2,19 @@ class UI {
     // Make a http get request
     draw(data) {
         let output = '';
-        output += `<div>${data.question}</div>`
-        console.log(data.alternatives)
+        output += `<div><h5>${data.question}</h5></div>`
+        // console.log(data.alternatives)
         
         if (data.alternatives === undefined){
-            console.log('IT HAS NO ALTERNATIVES')
+            output += `<input type="text"></input>`
+            //console.log('IT HAS NO ALTERNATIVES')
         } else{
-            console.log('IT HAS ALTERNATIVES')
+            for (var prop in data.alternatives) {
+                //output += `<input type="radio" name="answer" value=${data.alternatives[prop]}>`
+                output += `<input type="radio" name="answer" value=${prop}>`
+                output += `<label for="${data.alternatives[prop]}">${data.alternatives[prop]}</label>`
+              }
+            //console.log('IT HAS ALTERNATIVES')
         }
         
         document.getElementById('output').innerHTML = output
