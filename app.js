@@ -1,16 +1,17 @@
 const http = new EasyHTTP
-document.querySelector('#button1').addEventListener('click', fetchQuestion)
+const ui = new UI
+let urlToFetch = 'http://vhost3.lnu.se:20080/question/1'
 
-function fetchQuestion(){ 
-//get method to get a question
-http.get('http://vhost3.lnu.se:20080/question/1')
-    .then(data => {
-        console.log(data)
-        let output = '';
-        output += `<div>${data.question}</div>`
-        document.getElementById('output').innerHTML = output
-    })
-    .catch(err => console.log(err))
-}
+document.querySelector('#button1').addEventListener('click', fetchQuestion2)
 
 
+function fetchQuestion2(){ 
+    //get method to get a question
+    http.get(urlToFetch)
+        .then(data => {
+            console.log(data)
+            ui.paint(data)
+        })
+        .catch(err => console.log(err))
+    }
+    
