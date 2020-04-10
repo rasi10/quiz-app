@@ -10,18 +10,21 @@ let playerName = ''
 // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_win_settimeout_cleartimeout2
 let countDownSecs = 20;
 let totalTime = 0;
+let currentTimeout;
 let timer_is_on = 0;
 
 function timedCount() {
     if ( document.querySelector('#txt') !== null){
         document.querySelector('#txt').innerHTML = countDownSecs;
     }
-    countDownSecs = countDownSecs - 1;
+    countDownSecs--;
+    totalTime++;
+
     if (countDownSecs <= 10) {
         stopCount()
         console.log('TIME IS UP!! YOU WILL NOW GO TO THE SHOW RESULTS PAGE!')
     } else {
-        totalTime = setTimeout(timedCount, 1000);
+        currentTimeout = setTimeout(timedCount, 1000);
         console.log(`BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB: ${totalTime}   `)
         console.log(`tick: ${totalTime}`)
     }
@@ -36,7 +39,7 @@ function startCount() {
 }
 
 function stopCount() {
-    clearTimeout(totalTime);
+    clearTimeout(currentTimeout);
     timer_is_on = 0;
 }
 
