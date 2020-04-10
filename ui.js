@@ -1,10 +1,20 @@
 class UI {
+    drawStart(){
+        let output = ''
+        //output += `<h1>Quiz Application</h1>`
+        output += `<h3>Please, enter your name:</h3>`
+        output += `<input type="text" id="name-text"></input><br>`
+        output += `<button id="button1">Start The Quiz</button>`
+        document.getElementById('container').innerHTML = output
+
+    }
+
     drawQuestion(data, playerName) {
         let output = '';
         //output += `<h1>Quiz Application</h1>`
-        output += `<h4>Welcome, <spam id="player-name">${playerName}</spam></h4>`
-       
-        output += `<div><h5>${data.question}</h5></div>`
+        output += `<h2>Welcome, <spam id="player-name">${playerName}!</spam></h2>`
+        output += `<div id="question-container">`
+        output += `<h5>${data.question}</h5>`
         if (data.alternatives === undefined) {
             output += `<input type="text" id="answer-text"></input>`
         } else {
@@ -13,27 +23,16 @@ class UI {
                 //output += `<label for="${data.alternatives[prop]}">${data.alternatives[prop]}</label>`
             }
         }
-        output+=`<br><br>`
-        output+=`<button id="button2">Submit answer</button>`
+        output+=`<br>`
+        output+=`<button id="button2">Submit answer</button><br><br>`
         output += `<div>Remaining Time: <spam id="txt">timer</spam></div>`
-        // output += `<progress value="0" max="20" id="progressBar"></progress>`
-        
+        output += `</div>`        
         document.getElementById('container').innerHTML = output
-    }
-
-    drawStart(){
-        let output = ''
-        //output += `<h1>Quiz Application</h1>`
-        output += `<h5>Please, enter your name</h5>`
-        output += `<input type="text" id="name-text"></input>`
-        output += `<button id="button1">Start The Quiz</button>`
-        document.getElementById('container').innerHTML = output
-
     }
 
     drawLastQuestion(){
         let output = '';
-        output += `<h1>Quiz Application</h1>`
+        //output += `<h1>Quiz Application</h1>`
         output += `<div><h5>Congratulations! You cleared all the questions...</h5></div>`
         output += `<button id="button3">Show Results</button>`
         document.getElementById('container').innerHTML = output
@@ -41,8 +40,8 @@ class UI {
 
     drawResults (webstorageData) {
         let output = '';
-        output += `<h1>Quiz Application</h1>`
-        output += `<div><h5>Ranking list</h5></div>`
+        //output += `<h1>Quiz Application</h1>`
+        output += `<div><h2>Ranking list</h2></div>`
         output += `<table>
                         <tr>
                             <th>Player</th>

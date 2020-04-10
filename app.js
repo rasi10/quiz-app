@@ -8,9 +8,9 @@ let playerName = ''
 
 // Tryng the code here
 // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_win_settimeout_cleartimeout2
-var countDownSecs = 20;
-var t;
-var timer_is_on = 0;
+let countDownSecs = 20;
+let t;
+let timer_is_on = 0;
 
 function timedCount() {
     document.querySelector('#txt').innerHTML = countDownSecs;
