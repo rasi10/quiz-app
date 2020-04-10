@@ -1,24 +1,29 @@
 class UI {
     drawQuestion(data, playerName) {
         let output = '';
-        output += `<h1>Quiz Application</h1>`
+        //output += `<h1>Quiz Application</h1>`
         output += `<h4>Welcome, <spam id="player-name">${playerName}</spam></h4>`
+       
         output += `<div><h5>${data.question}</h5></div>`
         if (data.alternatives === undefined) {
             output += `<input type="text" id="answer-text"></input>`
         } else {
             for (var prop in data.alternatives) {
-                output += `<input type="radio" name="answer" value=${prop}>`
-                output += `<label for="${data.alternatives[prop]}">${data.alternatives[prop]}</label>`
+                output += `<input type="radio" name="answer" value=${prop}> ${data.alternatives[prop]}`
+                //output += `<label for="${data.alternatives[prop]}">${data.alternatives[prop]}</label>`
             }
         }
+        output+=`<br><br>`
         output+=`<button id="button2">Submit answer</button>`
+        output += `<div>Remaining Time: <spam id="txt">timer</spam></div>`
+        // output += `<progress value="0" max="20" id="progressBar"></progress>`
+        
         document.getElementById('container').innerHTML = output
     }
 
     drawStart(){
         let output = ''
-        output += `<h1>Quiz Application</h1>`
+        //output += `<h1>Quiz Application</h1>`
         output += `<h5>Please, enter your name</h5>`
         output += `<input type="text" id="name-text"></input>`
         output += `<button id="button1">Start The Quiz</button>`
