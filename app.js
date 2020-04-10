@@ -9,19 +9,22 @@ let playerName = ''
 // Tryng the code here
 // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_win_settimeout_cleartimeout2
 let countDownSecs = 20;
-let t;
+let totalTime = 0;
 let timer_is_on = 0;
 
 function timedCount() {
-    document.querySelector('#txt').innerHTML = countDownSecs;
+    if ( document.querySelector('#txt') !== null){
+        document.querySelector('#txt').innerHTML = countDownSecs;
+    }
     countDownSecs = countDownSecs - 1;
     if (countDownSecs <= 10) {
         stopCount()
         console.log('TIME IS UP!! YOU WILL NOW GO TO THE SHOW RESULTS PAGE!')
     } else {
-        t = setTimeout(timedCount, 1000);
+        totalTime = setTimeout(timedCount, 1000);
+        console.log(`BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB: ${totalTime}   `)
+        console.log(`tick: ${totalTime}`)
     }
-
 }
 
 function startCount() {
@@ -33,15 +36,14 @@ function startCount() {
 }
 
 function stopCount() {
-    clearTimeout(t);
+    clearTimeout(totalTime);
     timer_is_on = 0;
 }
-
-
 
 startUI()
 
 function startUI() {
+    console.log(`AAAAAAAAAAAAAAAAAAAAAAA: ${totalTime}   `)
     ui.drawStart()
     document.querySelector('#button1').addEventListener('click', startQuiz)
 }
@@ -53,19 +55,6 @@ function startQuiz() {
 }
 
 function manageTimer() {
-    // Trying this counter
-    // https://stackoverflow.com/questions/31106189/create-a-simple-10-second-countdown
-    /* let timeleft = 20;
-
-    let downloadTimer = setInterval(function () {
-        if (timeleft <= 0) {
-            console.log('GAME OVERR!')
-            clearInterval(downloadTimer);
-        }
-        document.getElementById("progressBar").value = 20 - timeleft;
-        timeleft -= 1;
-    }, 1000);
-    c= 0; */
     startCount()
 }
 
@@ -114,6 +103,7 @@ function submitAnswer() {
                 } else {
                     ui.drawLastQuestion()
                     document.querySelector('#button3').addEventListener('click', showResults)
+                    stopCount()
                     console.log('THIS WAS THE LAST QUESTIONNNN')
                 }
 
@@ -123,6 +113,8 @@ function submitAnswer() {
             }
         })
         .catch(err => console.log(err))
+        
+        console.log(`TIME IN SECS TO ADD: ${countDownSecs}`)
 }
 
 function showResults() {
@@ -135,9 +127,11 @@ function updateResultsList() {
     const scores = JSON.parse(window.localStorage.getItem('scores') || '[]')
     scores.push({
         name: playerName,
-        time: 10
+        time: totalTime - 4
     })
     window.localStorage.setItem('scores', JSON.stringify(scores))
+
+    totalTime = 0
 }
 
 function showRankingList() {
