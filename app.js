@@ -22,7 +22,12 @@ function timedCount() {
 
     if (countDownSecs <= 10) {
         stopCount()
-        console.log('TIME IS UP!! YOU WILL NOW GO TO THE SHOW RESULTS PAGE!')
+        ui.drawLastQuestion2()
+        console.log('THE TIME IS UP!!')
+        document.querySelector('#button5').addEventListener('click', showResults2)
+
+        //console.log(data)
+
     } else {
         currentTimeout = setTimeout(timedCount, 1000);
         console.log(`BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB: ${totalTime}   `)
@@ -111,7 +116,10 @@ function submitAnswer() {
                 }
 
             } else {
-                console.log('NOT RIGHT ANSWER, YOU SUCKER!')
+                stopCount()
+                ui.drawLastQuestion2()
+                console.log('NOT RIGHT ANSWER!')
+                document.querySelector('#button5').addEventListener('click', showResults2)
                 console.log(data)
             }
         })
@@ -122,6 +130,11 @@ function submitAnswer() {
 
 function showResults() {
     updateResultsList()
+    showRankingList()
+    document.querySelector('#button4').addEventListener('click', startUI)
+}
+
+function showResults2() {
     showRankingList()
     document.querySelector('#button4').addEventListener('click', startUI)
 }
@@ -145,3 +158,9 @@ function showRankingList() {
     })
     ui.drawResults(scoresAsJson)
 }
+
+/* (function debugFunction() {
+    console.log({totalTime})
+    console.log({currentTimeout})
+    setTimeout(debugFunction, 1000)
+})() */

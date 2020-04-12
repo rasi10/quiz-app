@@ -38,6 +38,15 @@ class UI {
         document.getElementById('container').innerHTML = output
     }
 
+    drawLastQuestion2(){
+        let output = '';
+        //output += `<h1>Quiz Application</h1>`
+        output += `<div><h5>Congratulations! You cleared all the questions...</h5></div>`
+        output += `<button id="button5">Show Results</button>`
+        document.getElementById('container').innerHTML = output
+    }
+
+
     drawResults (webstorageData) {
         let output = '';
         //output += `<h1>Quiz Application</h1>`
