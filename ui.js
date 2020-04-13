@@ -6,7 +6,6 @@ class UI {
         output += `<input type="text" id="name-text"></input><br>`
         output += `<button id="button1">Start The Quiz</button>`
         document.getElementById('container').innerHTML = output
-
     }
 
     drawQuestion(data, playerName) {
@@ -25,7 +24,7 @@ class UI {
         }
         output+=`<br>`
         output+=`<button id="button2">Submit answer</button><br><br>`
-        output += `<div>Remaining Time: <spam id="txt">timer</spam></div>`
+        output += `<div>Remaining Time: <spam id="timer-txt">20</spam></div>`
         output += `</div>`        
         document.getElementById('container').innerHTML = output
     }
@@ -38,10 +37,10 @@ class UI {
         document.getElementById('container').innerHTML = output
     }
 
-    drawLastQuestion2(){
+    drawLastQuestion2(message){
         let output = '';
         //output += `<h1>Quiz Application</h1>`
-        output += `<div><h5>Congratulations! You cleared all the questions...</h5></div>`
+        output += `<div><h5>End of quiz! ${message}</h5></div>`
         output += `<button id="button5">Show Results</button>`
         document.getElementById('container').innerHTML = output
     }
@@ -66,5 +65,20 @@ class UI {
         output += `</table>`
         output += `<button id="button4">Restart</button>`
         document.getElementById('container').innerHTML = output    
-        }        
+    }
+
+    drawResultsEmptyTable () {
+        let output = '';
+        //output += `<h1>Quiz Application</h1>`
+        output += `<div><h2>Ranking list</h2></div>`
+        output += `<div><h6>There are no results registered yet...</h6></div>`
+        output += `<table>
+                        <tr>
+                            <th>Player</th>
+                            <th>Time(secs)</th>
+                        </tr>`
+        output += `</table>`
+        output += `<button id="button4">Restart</button>`
+        document.getElementById('container').innerHTML = output    
+    }
 }
