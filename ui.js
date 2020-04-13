@@ -37,10 +37,10 @@ class UI {
         document.getElementById('container').innerHTML = output
     }
 
-    drawLastQuestion2(){
+    drawLastQuestion2(message){
         let output = '';
         //output += `<h1>Quiz Application</h1>`
-        output += `<div><h5>Congratulations! You cleared all the questions...</h5></div>`
+        output += `<div><h5>End of quiz! ${message}</h5></div>`
         output += `<button id="button5">Show Results</button>`
         document.getElementById('container').innerHTML = output
     }

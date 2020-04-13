@@ -1,7 +1,5 @@
 const http = new EasyHTTP
 const ui = new UI
-//const timer = new TimerCount()
-
 let urlToFetch = ''
 let urlToSendAnswer = ''
 let playerName = ''
@@ -24,8 +22,15 @@ function startQuiz() {
 }
 
 function tickTimer(){
-    console.log(++count)
+    ++count
+    // console.log(++count)
     document.querySelector('#timer-txt').innerHTML = 20 - count
+    if (count >=20){
+        stopTimer()
+        restartTimer()
+        ui.drawLastQuestion2(' The time is up!')
+        document.querySelector('#button5').addEventListener('click', showResultsWithoutUpdateTable)
+    } 
 }
 
 function stopTimer(){
@@ -34,6 +39,10 @@ function stopTimer(){
 
 function restartTimer(){
     count = 0
+}
+
+function restartTotalTime(){
+    totalTime = 0
 }
 
 function fetchQuestion(url) {
@@ -87,9 +96,9 @@ function submitAnswer() {
                 }
 
             } else {
-                ui.drawLastQuestion2()
+                ui.drawLastQuestion2('Your answer is wrong!')
                 //console.log('NOT RIGHT ANSWER!')
-                document.querySelector('#button5').addEventListener('click', showResults2)
+                document.querySelector('#button5').addEventListener('click', showResultsWithoutUpdateTable)
                 //console.log(data)
             }
         })
@@ -104,9 +113,11 @@ function showResults() {
     document.querySelector('#button4').addEventListener('click', startUI)
 }
 
-function showResults2() {
+function showResultsWithoutUpdateTable() {
+    restartTotalTime()
     showRankingList()
     document.querySelector('#button4').addEventListener('click', startUI)
+    
 }
 
 function updateResultsList() {
@@ -117,7 +128,7 @@ function updateResultsList() {
     })
     window.localStorage.setItem('scores', JSON.stringify(scores))
     console.log(`TOTAL TIME: ${totalTime}`)
-    totalTime = 0
+    restartTotalTime()
 }
 
 function showRankingList() {
